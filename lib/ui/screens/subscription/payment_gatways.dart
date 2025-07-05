@@ -69,8 +69,7 @@ class PaymentGateways {
       String base64Data = base64Encode(utf8.encode(jsonEncode(jsonData)));
       body = base64Data;
 
-      PhonePePaymentSdk.startTransaction(
-              body, callBackUrl, checksums, Constant.packageName)
+      PhonePePaymentSdk.startTransaction(body, callBackUrl)
           .then((response) async {
         if (response != null) {
           String status = response['status'].toString();
