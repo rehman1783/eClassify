@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:eClassify/data/cubits/subscription/assign_free_package_cubit.dart';
 import 'package:eClassify/data/cubits/subscription/fetch_ads_listing_subscription_packages_cubit.dart';
 import 'package:eClassify/data/cubits/subscription/fetch_featured_subscription_packages_cubit.dart';
+import 'package:eClassify/data/cubits/subscription/in_app_purchase_cubit.dart';
 import 'package:eClassify/data/cubits/system/fetch_system_settings_cubit.dart';
 import 'package:eClassify/data/cubits/system/get_api_keys_cubit.dart';
 import 'package:eClassify/data/model/subscription_package_model.dart';
@@ -36,7 +37,7 @@ class SubscriptionPackageListScreen extends StatefulWidget {
           BlocProvider(
             create: (context) => AssignFreePackageCubit(),
           ),
-          //BlocProvider<InAppPurchaseCubit>(create: (_) => InAppPurchaseCubit()),
+          BlocProvider<InAppPurchaseCubit>(create: (_) => InAppPurchaseCubit()),
         ],
         child: const SubscriptionPackageListScreen(),
       );
@@ -204,7 +205,7 @@ class _SubscriptionPackageListScreenState
             AppSettings.flutterwaveStatus = state.flutterWaveStatus;
             AppSettings.phonePeCurrency = state.phonePeCurrency ?? "";
             AppSettings.bankAccountNumber = state.bankAccountNumber ?? "";
-            AppSettings.bankAccountHolderName = state.bankAccountHolder??"";
+            AppSettings.bankAccountHolderName = state.bankAccountHolder ?? "";
             AppSettings.bankIfscSwiftCode = state.bankIfscSwiftCode ?? "";
             AppSettings.bankName = state.bankName ?? "";
             AppSettings.bankTransferStatus = state.bankTransferStatus;

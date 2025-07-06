@@ -133,7 +133,8 @@ class _FeaturedAdsSubscriptionPlansItemState
                             getData: state
                                 .paymentIntent["payment_gateway_response"]);
                       } else if (_selectedGateway == "razorpay") {
-                        PaymentGateways.razorpay(
+                        PaymentGateways paymentGateways = PaymentGateways();
+                        paymentGateways.razorpay(
                           orderId: state.paymentIntent["id"].toString(),
                           context: context,
                           packageId: widget.modelList[selectedIndex!].id!,

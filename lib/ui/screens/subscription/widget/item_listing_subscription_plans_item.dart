@@ -116,7 +116,7 @@ class _ItemListingSubscriptionPlansItemState
                         getData:
                             state.paymentIntent["payment_gateway_response"]);
                   } else if (_selectedGateway == "razorpay") {
-                    PaymentGateways.razorpay(
+                    PaymentGateways().razorpay(
                       orderId: state.paymentIntent["id"].toString(),
                       context: context,
                       packageId: widget.model.id!,

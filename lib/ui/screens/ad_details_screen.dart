@@ -318,7 +318,7 @@ class AdDetailsScreenState extends CloudState<AdDetailsScreen> {
                           onPressed: () {
                             //HelperUtils.share(context, model.slug!);
                             HelperUtils.shareItem(
-                                context, "product-details", model.slug! );
+                                context, "product-details", model.slug!);
                           },
                           icon: Icon(
                             Icons.share,
@@ -913,7 +913,7 @@ class AdDetailsScreenState extends CloudState<AdDetailsScreen> {
             Padding(
               padding: EdgeInsetsDirectional.only(start: 13.0),
               child: ClipPath(
-                clipper: CapShapeClipper(),
+                // clipper: CapShapeClipper(),
                 child: Container(
                     color: context.color.territoryColor,
                     width: MediaQuery.of(context).size.width / 3,
@@ -2606,9 +2606,8 @@ class AdDetailsScreenState extends CloudState<AdDetailsScreen> {
   }
 
   void navigateToSellerProfile() {
-    Navigator.pushNamed(context, Routes.sellerProfileScreen, arguments: {
-      "sellerId":model.user!.id
-    });
+    Navigator.pushNamed(context, Routes.sellerProfileScreen,
+        arguments: {"sellerId": model.user!.id});
   }
 
   Widget setSellerDetails() {

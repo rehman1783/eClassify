@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:phonepe_payment_sdk/phonepe_payment_sdk.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
+
 import 'package:eClassify/settings.dart';
 import 'package:eClassify/utils/constant.dart';
 import 'package:eClassify/utils/extensions/extensions.dart';
 import 'package:eClassify/utils/helper_utils.dart';
 import 'package:eClassify/utils/hive_utils.dart';
 import 'package:eClassify/utils/payment/gateaways/stripe_service.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:phonepe_payment_sdk/phonepe_payment_sdk.dart';
-
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentGateways {
   static String generateReference(String email) {
@@ -68,9 +68,7 @@ class PaymentGateways {
       String body = '';
       String base64Data = base64Encode(utf8.encode(jsonEncode(jsonData)));
       body = base64Data;
-
-      PhonePePaymentSdk.startTransaction(
-              body, callBackUrl, checksums, Constant.packageName)
+      PhonePePaymentSdk.startTransaction(body, checksums)
           .then((response) async {
         if (response != null) {
           String status = response['status'].toString();
@@ -98,7 +96,7 @@ class PaymentGateways {
     } catch (error) {}
   }
 
-  static void razorpay(
+  void razorpay(
       {required BuildContext context,
       required price,
       required orderId,
