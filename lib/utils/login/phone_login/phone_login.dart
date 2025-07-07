@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:eClassify/utils/api.dart';
 import 'package:eClassify/utils/constant.dart';
 import 'package:eClassify/utils/login/lib/login_status.dart';
@@ -20,7 +22,7 @@ class PhoneLogin extends LoginSystem {
           smsCode: (payload as PhoneLoginPayload).getOTP()!);
 
       UserCredential userCredential =
-      await firebaseAuth.signInWithCredential(credential);
+          await firebaseAuth.signInWithCredential(credential);
 
       emit(MSuccess());
 
@@ -49,24 +51,23 @@ class PhoneLogin extends LoginSystem {
 
     await FirebaseAuth.instance
         .verifyPhoneNumber(
-      timeout: Duration(
-        seconds: Constant.otpTimeOutSecond,
-      ),
-      phoneNumber:
-      "+${(payload as PhoneLoginPayload)
-          .countryCode}${(payload as PhoneLoginPayload).phoneNumber}",
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {
-        emit(MFail(e));
-      },
-      codeSent: (String verificationId, int? resendToken) {
-        super.requestVerification();
-        forceResendingToken = resendToken;
-        this.verificationId = verificationId;
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-      forceResendingToken: forceResendingToken,
-    )
+          timeout: Duration(
+            seconds: Constant.otpTimeOutSecond,
+          ),
+          phoneNumber:
+              "+${(payload as PhoneLoginPayload).countryCode}${(payload as PhoneLoginPayload).phoneNumber}",
+          verificationCompleted: (PhoneAuthCredential credential) {},
+          verificationFailed: (FirebaseAuthException e) {
+            emit(MFail(e));
+          },
+          codeSent: (String verificationId, int? resendToken) {
+            super.requestVerification();
+            forceResendingToken = resendToken;
+            this.verificationId = verificationId;
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {},
+          forceResendingToken: forceResendingToken,
+        )
         .then((value) {});
   }
 
@@ -75,11 +76,10 @@ class PhoneLogin extends LoginSystem {
         (payload as PhoneLoginPayload).phoneNumber;
     final parameters = {
       'number':
-      "${(payload as PhoneLoginPayload)
-          .countryCode}${(payload as PhoneLoginPayload).phoneNumber}",
+          "${(payload as PhoneLoginPayload).countryCode}${(payload as PhoneLoginPayload).phoneNumber}",
     };
     final response =
-    await Api.get(url: Api.getTwilioOtp, queryParameters: parameters);
+        await Api.get(url: Api.getTwilioOtp, queryParameters: parameters);
 
     return response;
   }
