@@ -7,7 +7,8 @@ class GetApiKeysCubit extends Cubit<GetApiKeysState> {
   Future<void> fetch() async {
     try {
       emit(GetApiKeysInProgress());
-      Map<String, dynamic> result = await Api.get(url: Api.getPaymentSettingsApi);
+      Map<String, dynamic> result =
+          await Api.get(url: Api.getPaymentSettingsApi);
       var data = result['data'] ?? {};
 
       emit(GetApiKeysSuccess(
@@ -26,22 +27,27 @@ class GetApiKeysCubit extends Cubit<GetApiKeysState> {
         flutterWaveKey: _getData(data, 'flutterwave', 'api_key'),
         flutterWaveCurrency: _getData(data, 'flutterwave', 'currency_code'),
         flutterWaveStatus: _getIntData(data, 'flutterwave', 'status'),
-        bankAccountHolder: _getData(data, 'bankTransfer', 'account_holder_name'),
+        bankAccountHolder:
+            _getData(data, 'bankTransfer', 'account_holder_name'),
         bankAccountNumber: _getData(data, 'bankTransfer', 'account_number'),
         bankName: _getData(data, 'bankTransfer', 'bank_name'),
         bankIfscSwiftCode: _getData(data, 'bankTransfer', 'ifsc_swift_code'),
         bankTransferStatus: _getIntData(data, 'bankTransfer', 'status'),
       ));
-    } catch (e, stackTrace) {
+    } catch (e) {
       emit(GetApiKeysFail(e.toString()));
     }
   }
 
-  String _getData(Map<String, dynamic> data, String type, String key, {String defaultValue = ''}) =>
+  String _getData(Map<String, dynamic> data, String type, String key,
+          {String defaultValue = ''}) =>
       data[type]?[key]?.toString() ?? defaultValue;
 
-  int _getIntData(Map<String, dynamic> data, String type, String key, {int defaultValue = 0}) =>
-      int.tryParse(_getData(data, type, key, defaultValue: defaultValue.toString())) ?? defaultValue;
+  int _getIntData(Map<String, dynamic> data, String type, String key,
+          {int defaultValue = 0}) =>
+      int.tryParse(
+          _getData(data, type, key, defaultValue: defaultValue.toString())) ??
+      defaultValue;
 }
 
 abstract class GetApiKeysState {}
@@ -56,13 +62,27 @@ class GetApiKeysFail extends GetApiKeysState {
 }
 
 class GetApiKeysSuccess extends GetApiKeysState {
-  final String? razorPayApiKey, razorPayCurrency, payStackApiKey, payStackCurrency,
-      stripeCurrency, stripePublishableKey, phonePeKey, phonePeCurrency,
-      flutterWaveKey, flutterWaveCurrency, bankAccountHolder, bankAccountNumber,
-      bankName, bankIfscSwiftCode;
+  final String? razorPayApiKey,
+      razorPayCurrency,
+      payStackApiKey,
+      payStackCurrency,
+      stripeCurrency,
+      stripePublishableKey,
+      phonePeKey,
+      phonePeCurrency,
+      flutterWaveKey,
+      flutterWaveCurrency,
+      bankAccountHolder,
+      bankAccountNumber,
+      bankName,
+      bankIfscSwiftCode;
 
-  final int razorPayStatus, payStackStatus, stripeStatus, phonePeStatus,
-      flutterWaveStatus, bankTransferStatus;
+  final int razorPayStatus,
+      payStackStatus,
+      stripeStatus,
+      phonePeStatus,
+      flutterWaveStatus,
+      bankTransferStatus;
 
   GetApiKeysSuccess({
     this.razorPayApiKey,

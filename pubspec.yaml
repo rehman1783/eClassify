@@ -2,12 +2,9 @@ name: eClassify
 description: A classified app
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev [Be careful]
-
 version: 2.5.0+28
-
 environment:
   sdk: ">=3.0.6 <4.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
@@ -37,7 +34,7 @@ dependencies:
   awesome_notifications: ^0.10.1
   device_preview: ^1.2.0
   path_provider: ^2.1.4
-  record: ^5.2.0
+  record: ^6.0.0
   audioplayers: ^6.1.0
   image_cropper: ^9.0.0
   permission_handler: ^11.3.1
@@ -72,10 +69,8 @@ dependencies:
   android_intent_plus: ^5.3.0
   google_cloud_translation: ^0.0.4
   phonepe_payment_sdk: ^3.0.0
-
 dependency_overrides:
   intl: ^0.20.0
-
 dev_dependencies:
   rename: ^3.0.0
   flutter_test:
@@ -83,10 +78,8 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-
 flutter:
   uses-material-design: true
-
   assets:
     - assets/svg/
     - assets/svg/bottomnav/
@@ -97,7 +90,6 @@ flutter:
     - assets/svg/Illustrators/
     - assets/svg/payment/
     - assets/
-
   fonts:
     - family: Manrope
       fonts:

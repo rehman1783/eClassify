@@ -37,7 +37,6 @@ import 'package:eClassify/ui/screens/google_map_screen.dart';
 import 'package:eClassify/ui/screens/home/home_screen.dart';
 import 'package:eClassify/ui/screens/home/widgets/grid_list_adapter.dart';
 import 'package:eClassify/ui/screens/home/widgets/home_sections_adapter.dart';
-import 'package:eClassify/ui/screens/subscription/widget/featured_ads_subscription_plan_item.dart';
 
 import 'package:eClassify/ui/screens/widgets/blurred_dialog_box.dart';
 import 'package:eClassify/ui/screens/widgets/errors/no_data_found.dart';
